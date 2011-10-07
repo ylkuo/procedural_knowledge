@@ -1,0 +1,5 @@
+==================== 
+     Dependency
+====================
+- PyMongo: http://api.mongodb.org/python/current/
+- Edit Distance: http://code.google.com/p/py-editdist/
