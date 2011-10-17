@@ -78,5 +78,5 @@ if __name__ == '__main__':
 	for action in plan.get_actions('eat a banana'):
 		print action
 	from util import save_pickle
-	plan.populate_goal_actions_map(3000, 6000)
-	save_pickle('../data/goal_actions_6000.pickle.gz', plan.goal_actions_map)
+	plan.populate_goal_actions_map(0, 3000)
+	save_pickle('../data/goal_actions.pickle.gz', plan.goal_actions_map)
