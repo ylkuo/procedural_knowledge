@@ -1,5 +1,6 @@
 import cPickle as pickle
 import gzip
+import numpy as np
 from sklearn.utils import safe_asanyarray
 from sklearn.utils.extmath import safe_sparse_dot
 
@@ -41,6 +42,22 @@ def flatten(x):
         else:
             result.append(el)
     return result
+
+def edit_distance(list1, list2):
+    m = len(list1)
+    n = len(list2)
+    data = np.zeros((m+1, n+1), 'i')
+    data[0,:] = np.arange(n+1)
+    data[:,0] = np.arange(m+1)
+    data[0,0] = 0
+    for a in xrange(1, m+1):
+        for b in xrange(1, n+1):
+            if list1[a-1] == list2[b-1]:
+                data[a,b] = data[a-1,b-1]
+            else:
+                data[a,b] = 1 + min(data[a-1,b], \
+                    data[a,b-1], data[a-1,b-1])
+    return data[m,n]
 
 def cosine_similarity(X, Y, copy=False):
     """Compute pairwise cosine similarities between rows in X and Y
